@@ -6,7 +6,14 @@ const VideoDetails = (props) => {
         return (
             <div>
                 <div className="ui embed">
-                    <iframe title={props.video.snippet.title} src={videoSrc} />
+                    <iframe allowfullscreen="allowfullscreen"
+                        mozallowfullscreen="mozallowfullscreen" 
+                        msallowfullscreen="msallowfullscreen" 
+                        oallowfullscreen="oallowfullscreen" 
+                        webkitallowfullscreen="webkitallowfullscreen" 
+                        title={props.video.snippet.title} 
+                        src={videoSrc} 
+                    />
                 </div>
                 <div className="ui segment">
                     <h4>{props.video.snippet.title}</h4>
