@@ -6,6 +6,7 @@ import VideoDetails from './VideoDetails';
 
 const KEY = 'AIzaSyAuemM9CGFNzLR2Js50KUQl0ec0_tH2C5I';
 class App extends React.Component {
+    
     state= { 
         videos: [],
         selectedVideo: null
@@ -29,6 +30,23 @@ class App extends React.Component {
             console.log(this.state.videos);
         });
     };
+    loadClient=() => {
+        youtube.client.setApiKey(KEY)
+        return youtube.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+            .then(function() { console.log("youtube client loaded for API"); },
+                function(err) { console.error("Error loading youtube client for API", err); });
+    }
+    execute=() => {
+        return youtube.client.youtube.comments.list({
+        "part": "snippet",
+        "parentId": "UgzDE2tasfmrYLyNkGt4AaABAg"
+        })
+            .then(function(response) {
+                    // Handle the results here (response.result has the parsed body).
+                    console.log("Response", response);
+                },
+                function(err) { console.error("Execute error", err); });
+    }
     render() {
         return (
             <div className="jumbotron container">
